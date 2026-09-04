@@ -121,7 +121,11 @@ app.use((error, req, res, next) => {
 
   res.status(500).json(explanationFailureResponse)
 })
+app.use(express.static('dist'))
 
+app.get('/', (req, res) => {
+  res.sendFile('dist/index.html', { root: process.cwd() })
+})
 app.listen(port, () => {
   console.log(`LabInsight AI backend running on http://localhost:${port}`)
 })
